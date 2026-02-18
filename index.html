@@ -3,249 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Ayska Eveline Ikbar</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
+    <title>HBD Pi Sayang! 🎀</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Varela+Round&display=swap" rel="stylesheet">
     <style>
-        /* Base Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --pastel-pink: #ffdae9;
+            --pastel-yellow: #fff4d1;
+            --pastel-blue: #d1f4ff;
+            --hot-pink: #ff69b4;
         }
-
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #334155;
-            background-color: #ffffff;
-            /* Menggunakan padding responsif */
-            padding: 0 5%;
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--pastel-pink);
+            overflow-x: hidden;
+            color: #5d5d5d;
+        }
+        .font-bubbly { font-family: 'Varela Round', sans-serif; }
+
+        /* Floating Decorations */
+        .float-item {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10;
+            animation: floatUpDown 3s ease-in-out infinite;
+            opacity: 0.5;
         }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
         }
 
-        /* Header */
-        header {
-            text-align: center;
-            padding: 15vh 0 40px; /* Menggunakan vh agar adaptif dengan tinggi layar */
+        .btn-gemoy {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 6px 0 #db2777;
+        }
+        .btn-gemoy:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #db2777;
         }
 
-        h1 {
-            font-size: clamp(1.75rem, 5vw, 2.25rem); /* Font size adaptif */
-            color: #1e293b;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .subtitle {
-            color: #ec4899;
-            font-weight: 600;
-            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: block;
-        }
-
-        .bio {
-            color: #64748b;
-            font-size: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 0 10px;
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 60px;
-        }
-
-        h2 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #94a3b8;
-            margin-bottom: 24px;
+        .memory-card {
+            background: white;
+            padding: 15px;
+            border-radius: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 2px solid #fff;
             display: flex;
+            flex-direction: column;
             align-items: center;
-        }
-
-        h2 i {
-            margin-right: 10px;
-        }
-
-        /* Chips / Skills */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skill-tag {
-            background-color: #fff1f2;
-            color: #db2777;
-            border: 1px solid #fce7f3;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: transform 0.2s ease;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Cards / Experience */
-        .card {
-            border: 1px solid #f1f5f9;
-            padding: 24px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-            background-color: #ffffff;
-        }
-
-        .card:hover {
-            border-color: #fce7f3;
-            background-color: #fff9fb;
-            box-shadow: 0 10px 15px -3px rgba(236, 72, 153, 0.05);
-        }
-
-        .card h3 {
-            font-size: 1.15rem;
-            color: #1e293b;
-            margin-bottom: 4px;
-        }
-
-        .card-role {
-            font-size: 0.85rem;
-            color: #ec4899;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .card-desc {
-            font-size: 0.95rem;
-            color: #64748b;
-            text-align: justify;
-        }
-
-        /* Contact */
-        .contact-links {
-            display: flex;
             justify-content: center;
-            gap: clamp(20px, 8vw, 40px); /* Jarak antar icon adaptif */
-            padding: 30px 0;
-        }
-
-        .contact-links a {
-            color: #94a3b8;
-            transition: color 0.3s, transform 0.3s;
-            display: inline-block;
-        }
-
-        .contact-links a:hover {
-            color: #ec4899;
-            transform: scale(1.1);
-        }
-
-        /* Footer */
-        footer {
             text-align: center;
-            padding: 50px 0;
-            font-size: 0.8rem;
-            color: #cbd5e1;
-            border-top: 1px solid #f1f5f9;
-            margin-top: 40px;
+            transition: transform 0.3s;
+        }
+        .memory-card:hover {
+            transform: scale(1.05) rotate(2deg);
         }
 
-        /* Media Queries Khusus */
-        @media (max-width: 640px) {
-            body {
-                padding: 0 24px;
-            }
-            header {
-                padding-top: 10vh;
-            }
-            .card {
-                padding: 20px;
-            }
-            .skills-container {
-                justify-content: center;
-            }
+        .flame {
+            width: 12px;
+            height: 20px;
+            background: #ffae00;
+            border-radius: 50% 50% 20% 20%;
+            margin: 0 auto;
+            animation: flicker 0.1s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .wiggle:hover {
+            animation: wiggle 0.5s infinite;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen p-4 pb-24">
 
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Ayska Eveline Ikbar</h1>
-            <span class="subtitle">Siswi SMK Sistem Informasi</span>
-            <p class="bio">
-                Fokus pada pengembangan <strong>Web Programming</strong> dan analisis <strong>Data Science</strong>. 
-                Berpengalaman dalam memimpin organisasi dan manajemen keuangan tim.
-            </p>
-        </header>
+    <!-- Ornamen Melayang (Pakai Ikon Lucide Biar Gak Kotak) -->
+    <div class="float-item" style="top: 10%; left: 5%;"><i data-lucide="cloud" class="text-white w-10 h-10"></i></div>
+    <div class="float-item" style="top: 15%; right: 8%; animation-delay: 1s;"><i data-lucide="sparkles" class="text-yellow-300 w-8 h-8"></i></div>
+    <div class="float-item" style="bottom: 25%; left: 10%; animation-delay: 0.5s;"><i data-lucide="heart" class="text-pink-300 w-10 h-10 fill-current"></i></div>
+    <div class="float-item" style="bottom: 20%; right: 5%; animation-delay: 1.5s;"><i data-lucide="flower-2" class="text-pink-200 w-12 h-12"></i></div>
 
-        <!-- Keahlian -->
-        <section>
-            <h2><i data-lucide="code-2" style="width: 16px;"></i> Fokus Teknologi</h2>
-            <div class="skills-container">
-                <span class="skill-tag">Web Development</span>
-                <span class="skill-tag">Python for Data Science</span>
-                <span class="skill-tag">HTML & CSS</span>
-                <span class="skill-tag">SQL & Spreadsheets</span>
-                <span class="skill-tag">Digital Leadership</span>
+    <div class="max-w-md mx-auto">
+        
+        <div class="text-center mt-8 mb-6">
+            <div class="inline-block bg-white px-6 py-2 rounded-full shadow-sm mb-4">
+                <span class="text-pink-500 font-bold flex items-center gap-2">
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i> Bestie Forever! <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                </span>
             </div>
-        </section>
+            <h1 class="text-4xl font-bubbly text-pink-600 drop-shadow-md">HBD Pi Sayang!</h1>
+        </div>
 
-        <!-- Organisasi -->
-        <section>
-            <h2><i data-lucide="award" style="width: 16px;"></i> Pengalaman Organisasi</h2>
+        <div class="bg-white/70 backdrop-blur-md border-4 border-white rounded-[2.5rem] shadow-xl p-6 min-h-[450px] relative overflow-hidden">
             
-            <div class="card">
-                <h3>OSIS</h3>
-                <span class="card-role">Ketua OSIS</span>
-                <p class="card-desc">Bertanggung jawab dalam memimpin seluruh pengurus, mengoordinasikan program kerja sekolah, dan menjadi jembatan antara siswa dan pihak sekolah.</p>
+            <!-- Tab: Beranda (Cake) -->
+            <div id="tab-home" class="tab-content active text-center">
+                <div class="mb-6 relative pt-10">
+                    <div id="cake" class="cursor-pointer transition-all duration-500 transform">
+                        <div class="relative inline-block">
+                            <div id="candle-flame" class="flame mb-1"></div>
+                            <div class="w-3 h-10 bg-pink-400 mx-auto rounded-t-full"></div>
+                            <div class="w-32 h-16 bg-orange-100 rounded-t-xl border-b-4 border-orange-200 relative">
+                                <div class="absolute inset-0 flex justify-around items-center px-2">
+                                    <div class="w-2 h-2 bg-pink-300 rounded-full"></div>
+                                    <div class="w-2 h-2 bg-pink-300 rounded-full"></div>
+                                    <div class="w-2 h-2 bg-pink-300 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="w-40 h-10 bg-pink-200 rounded-lg -mt-1 mx-auto shadow-md"></div>
+                        </div>
+                    </div>
+                    <p id="candle-text" class="text-sm font-bold text-pink-400 mt-4 animate-pulse">Ketuk lilinnya buat tiup! 🎂</p>
+                </div>
+                
+                <h2 class="text-2xl font-bubbly text-gray-700 mb-2">Selamat Ulang Tahun!</h2>
+                <p class="text-gray-500 px-4 mb-8 text-sm leading-relaxed">Walaupun kita jarang ketemu, tapi tiap momen bareng kamu selalu bikin aku hepi banget! ✨</p>
+                
+                <button onclick="checkLove()" class="btn-gemoy bg-pink-500 text-white px-8 py-3 rounded-2xl font-bold wiggle flex items-center gap-2 mx-auto">
+                    <i data-lucide="heart" class="w-5 h-5 fill-current"></i> Cek Kadar Sayang Aku
+                </button>
+                <div id="love-result" class="mt-4 font-bold text-pink-600 text-xl hidden"></div>
             </div>
 
-            <div class="card">
-                <h3>Ambalan Pramuka</h3>
-                <span class="card-role">Juru Uang (Bendahara)</span>
-                <p class="card-desc">Mengelola administrasi keuangan ambalan, menyusun laporan anggaran kegiatan, dan memastikan transparansi pendanaan organisasi.</p>
+            <!-- Tab: Memories -->
+            <div id="tab-gallery" class="tab-content">
+                <h2 class="text-2xl font-bubbly text-pink-500 text-center mb-6">Kenangan Kita ✨</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="memory-card bg-pink-50 border-pink-100">
+                        <i data-lucide="smile" class="text-pink-400 w-8 h-8 mb-2"></i>
+                        <p class="text-[11px] font-bold text-pink-600">Jaman SD-SMA Bareng!</p>
+                    </div>
+                    <div class="memory-card bg-yellow-50 border-yellow-100">
+                        <i data-lucide="camera" class="text-yellow-500 w-8 h-8 mb-2"></i>
+                        <p class="text-[11px] font-bold text-yellow-700">Mirror Selfie Sejuta Kali</p>
+                    </div>
+                    <div class="memory-card bg-blue-50 border-blue-100">
+                        <i data-lucide="party-popper" class="text-blue-400 w-8 h-8 mb-2"></i>
+                        <p class="text-[11px] font-bold text-blue-600">Ketemu Selalu Heboh</p>
+                    </div>
+                    <div class="memory-card bg-purple-50 border-purple-100">
+                        <i data-lucide="utensils" class="text-purple-400 w-8 h-8 mb-2"></i>
+                        <p class="text-[11px] font-bold text-purple-600">Makan Enak & Gosip</p>
+                    </div>
+                    <div class="memory-card bg-green-50 border-green-100">
+                        <i data-lucide="ghost" class="text-green-400 w-8 h-8 mb-2"></i>
+                        <p class="text-[11px] font-bold text-green-600">Momen Lucu & Absurd</p>
+                    </div>
+                    <div class="memory-card bg-orange-50 border-orange-100">
+                        <i data-lucide="sparkles" class="text-orange-400 w-8 h-8 mb-2"></i>
+                        <p class="text-[11px] font-bold text-orange-600">Bestie Paling Gemes</p>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <!-- Kontak -->
-        <section>
-            <div class="contact-links">
-                <a href="#" title="Email"><i data-lucide="mail"></i></a>
-                <a href="#" title="LinkedIn"><i data-lucide="linkedin"></i></a>
-                <a href="#" title="Instagram"><i data-lucide="instagram"></i></a>
-                <a href="#" title="GitHub"><i data-lucide="github"></i></a>
+            <!-- Tab: Messages -->
+            <div id="tab-message" class="tab-content">
+                <h2 class="text-2xl font-bubbly text-pink-500 text-center mb-6">Surat Buat Pi 💌</h2>
+                <div class="bg-white/50 p-6 rounded-3xl border-2 border-dashed border-pink-200 text-gray-600 leading-relaxed text-sm italic shadow-inner">
+                    "Hai Pi! Makasih ya udah jadi sahabat aku dari kecil sampai sekarang. <br><br>
+                    Meskipun jarang ketemu, tapi tiap main bareng aku selalu hepi banget! Makasih udah jadi bestie terbaik aku jaman sekolah dulu. <br><br>
+                    Selamat ulang tahun, sukses dan bahagia terus buat kamu! Love you! 🎈"
+                    <p class="mt-4 font-bold text-pink-500 text-right">- Sahabatmu ✨</p>
+                </div>
             </div>
-        </section>
 
-        <!-- Footer -->
-        <footer>
-            &copy; 2024 &bull; Ayska Eveline Ikbar &bull; SMK SIK
-        </footer>
+            <!-- Tab: Gift -->
+            <div id="tab-gift" class="tab-content text-center">
+                <h2 class="text-2xl font-bubbly text-pink-500 mb-8">Kado Buat Pi! 🎁</h2>
+                <div id="gift-container" class="cursor-pointer py-10" onclick="popGift()">
+                    <div class="flex justify-center animate-bounce">
+                        <div class="bg-pink-500 p-8 rounded-3xl shadow-lg relative">
+                            <i data-lucide="gift" class="w-20 h-20 text-white"></i>
+                            <div class="absolute -top-2 -right-2 bg-yellow-400 w-8 h-8 rounded-full border-4 border-white"></div>
+                        </div>
+                    </div>
+                    <p class="text-pink-400 font-bold mt-8 animate-pulse">Ketuk kadonya!</p>
+                </div>
+                <div id="gift-reveal" class="hidden">
+                    <div class="bg-gradient-to-br from-yellow-50 to-orange-100 p-8 rounded-[2rem] border-4 border-white shadow-xl relative overflow-hidden">
+                        <div class="absolute -top-4 -right-4 opacity-10"><i data-lucide="ticket" class="w-24 h-24 rotate-12"></i></div>
+                        <p class="text-orange-600 font-black text-xl mb-2">GOLDEN TICKET! 🎟️</p>
+                        <p class="text-sm text-orange-500 font-bold mb-4 italic">Voucher Makan Bareng + Gosip Sepuasnya!</p>
+                        <div class="flex justify-center gap-3">
+                            <div class="bg-white p-2 rounded-full shadow-sm text-pink-400"><i data-lucide="ice-cream"></i></div>
+                            <div class="bg-white p-2 rounded-full shadow-sm text-pink-400"><i data-lucide="pizza"></i></div>
+                            <div class="bg-white p-2 rounded-full shadow-sm text-pink-400"><i data-lucide="clapperboard"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-sm bg-white/90 backdrop-blur rounded-3xl shadow-2xl p-2 flex justify-around border-2 border-pink-100 z-50">
+            <button onclick="switchTab('home')" class="nav-btn p-3 rounded-2xl text-pink-400 hover:bg-pink-50 transition-colors">
+                <i data-lucide="cake"></i>
+            </button>
+            <button onclick="switchTab('gallery')" class="nav-btn p-3 rounded-2xl text-pink-400 hover:bg-pink-50 transition-colors">
+                <i data-lucide="sparkles"></i>
+            </button>
+            <button onclick="switchTab('message')" class="nav-btn p-3 rounded-2xl text-pink-400 hover:bg-pink-50 transition-colors">
+                <i data-lucide="heart"></i>
+            </button>
+            <button onclick="switchTab('gift')" class="nav-btn p-3 rounded-2xl text-pink-400 hover:bg-pink-50 transition-colors">
+                <i data-lucide="gift"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <div id="toast" class="fixed top-10 left-1/2 -translate-x-1/2 bg-white px-6 py-3 rounded-full shadow-xl font-bold text-pink-500 border-2 border-pink-200 opacity-0 transition-opacity pointer-events-none z-50">
+        Yeeeey! 🎉
     </div>
 
     <script>
-        // Inisialisasi ikon
+        // Inisialisasi Ikon
         lucide.createIcons();
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            
+            confetti({
+                particleCount: 20,
+                spread: 50,
+                origin: { y: 0.8 },
+                colors: ['#ffdae9', '#ff69b4']
+            });
+            
+            // Refresh icons just in case
+            lucide.createIcons();
+        }
+
+        const cake = document.getElementById('cake');
+        let candleLit = true;
+
+        cake.onclick = () => {
+            if (candleLit) {
+                document.getElementById('candle-flame').style.display = 'none';
+                document.getElementById('candle-text').innerHTML = 'Horeee! Semua keinginanmu terkabul! <i data-lucide="sparkles" class="inline w-4 h-4"></i>';
+                document.getElementById('candle-text').classList.remove('animate-pulse');
+                lucide.createIcons();
+                
+                const duration = 2 * 1000;
+                const end = Date.now() + duration;
+
+                (function frame() {
+                    confetti({
+                        particleCount: 5,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: ['#ff69b4', '#ffffff']
+                    });
+                    confetti({
+                        particleCount: 5,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: ['#ff69b4', '#ffffff']
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
+                
+                showToast("Fyuuuuh~ Lilin Ditiup! 🎂");
+                candleLit = false;
+            }
+        };
+
+        function checkLove() {
+            const result = document.getElementById('love-result');
+            result.classList.remove('hidden');
+            result.innerText = "Lagi ngitung...";
+            
+            let count = 0;
+            const target = 1000000;
+            const interval = setInterval(() => {
+                count += Math.floor(Math.random() * 80000);
+                if (count >= target) {
+                    clearInterval(interval);
+                    result.innerHTML = `Sayang Pi: <br> <span class="text-3xl">∞ Tak Terhingga! 💖</span>`;
+                    confetti({ particleCount: 100, spread: 70 });
+                } else {
+                    result.innerText = `Lagi Ngitung: ${count}%`;
+                }
+            }, 50);
+        }
+
+        function popGift() {
+            const container = document.getElementById('gift-container');
+            const reveal = document.getElementById('gift-reveal');
+            
+            container.style.transform = 'scale(0.5)';
+            container.style.opacity = '0';
+            
+            setTimeout(() => {
+                container.classList.add('hidden');
+                reveal.classList.remove('hidden');
+                reveal.classList.add('animate-bounce');
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+                showToast("Kadonya Kebuka! 🎁");
+                lucide.createIcons();
+            }, 300);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2000);
+        }
     </script>
 </body>
 </html>
